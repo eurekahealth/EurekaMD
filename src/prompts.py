@@ -243,22 +243,22 @@ def answer_via_ensemble(client, model_id, question, choices, examples, temp, num
 
         examples = random.sample(examples, len(examples))
 
-        try:
-            response = answer_usmle_question(
-                client,
-                question,
-                choice_order_dict,
-                examples,
-                temp,
-                model_id,
-                cot
-            )
-            shuffled_predicted_answer_idx = response['answer']
-            predicted_answer = choice_order_dict[shuffled_predicted_answer_idx]
-            predicted_answer_idx = answer_to_idx[predicted_answer]
-            votes_by_answer_idx[predicted_answer_idx] += 1
-        except Exception as exc:
+        response = answer_usmle_question(
+            client,
+            question,
+            choice_order_dict,
+            examples,
+            temp,
+            model_id,
+            cot
+        )
+        if not response:
             continue
+
+        shuffled_predicted_answer_idx = response['answer']
+        predicted_answer = choice_order_dict[shuffled_predicted_answer_idx]
+        predicted_answer_idx = answer_to_idx[predicted_answer]
+        votes_by_answer_idx[predicted_answer_idx] += 1
 
     return votes_by_answer_idx
 

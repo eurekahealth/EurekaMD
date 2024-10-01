@@ -8,7 +8,7 @@ from tqdm import tqdm
 
 
 class VectorDB:
-    def __init__(self, client, db_path="./data/output/vector_db.pkl"):
+    def __init__(self, client, db_path="./data/generated/vector_db.pkl"):
         self.client = client
         self.embeddings = []
         self.questions = []

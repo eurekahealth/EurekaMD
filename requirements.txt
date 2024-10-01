@@ -1,3 +1,4 @@
+notdiamond[create]
 fireworks-ai
 openai
 pandas
