@@ -147,7 +147,7 @@ def answer_usmle_question(
     choices,
     examples,
     temp=0,
-    model_id='gpt-4o-2024-08-06',
+    model_id='gpt-4o',
     cot=True
 ):
     system_prompt = "You are a medical expert taking the United States Medical Licensing Examination."

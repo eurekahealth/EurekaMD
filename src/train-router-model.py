@@ -3,14 +3,13 @@ import argparse
 import pandas as pd
 from notdiamond.llms.config import LLMConfig
 from notdiamond.toolkit import CustomRouter
-from notdiamond import NotDiamond
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("--gpt-file-location", type=str, default="data/generated/gpt-4o-no-cot_router_training_data.csv", help="The location of the gpt results on the dev set with cot.")
-    parser.add_argument("--gpt-no-cot-file-location", type=str, default="data/generated/gpt-4o_router_training_data.csv", help="The location of the gpt results on the dev set without cot.")
-    parser.add_argument("--llama-file-location", type=str, default="data/generated/llama-no-cot_router_training_data.csv", help="The location of the llama results on the dev set with cot.")
-    parser.add_argument("--llama-no-cot-file-location", type=str, default="data/generated/llama_router_training_data.csv", help="The location of the llama results on the dev set without cot.")
+    parser.add_argument("--gpt-file-location", type=str, default="data/generated/gpt-4o_router_training_data.csv", help="The location of the gpt results on the dev set with cot.")
+    parser.add_argument("--gpt-no-cot-file-location", type=str, default="data/generated/gpt-4o-no-cot_router_training_data.csv", help="The location of the gpt results on the dev set without cot.")
+    parser.add_argument("--llama-file-location", type=str, default="data/generated/llama_router_training_data.csv", help="The location of the llama results on the dev set with cot.")
+    parser.add_argument("--llama-no-cot-file-location", type=str, default="data/generated/llama-no-cot_router_training_data.csv", help="The location of the llama results on the dev set without cot.")
     args, _ = parser.parse_known_args()
 
     gpt_df = pd.read_csv(args.gpt_file_location)

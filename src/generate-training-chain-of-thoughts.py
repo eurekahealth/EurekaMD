@@ -64,7 +64,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--output-file-location", type=str, required=True, help="The location to output the chain of thought results.")
     parser.add_argument("--train-data-file-location", type=str, default="data/questions/medqa_4_options_train.jsonl", help="The location of the training data file.")
-    parser.add_argument("--similar_questions-file-location", type=str, default="data/generated/similar_training_questions.csv", help="The location of the file mapping questions in the dev set to similar training questions.")
+    parser.add_argument("--similar_questions-file-location", type=str, default="data/generated/similar_training_questions_test.csv", help="The location of the file mapping questions in the dev set to similar training questions.")
     parser.add_argument("--model-id", type=str, choices=["gpt-4o-2024-08-06", "accounts/fireworks/models/llama-v3p1-405b-instruct"], help="The id of the model to use.")
     parser.add_argument("--client", type=str, choices=["openai", "fireworks"], help="The llm provider to use.")
     args, _ = parser.parse_known_args()
