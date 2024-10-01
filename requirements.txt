@@ -1,0 +1,5 @@
+fireworks-ai
+openai
+pandas
+tqdm
+
