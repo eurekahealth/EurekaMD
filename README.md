@@ -1,4 +1,4 @@
-# EurekaPrompt
+# EurekaMD
 
 ## Table of Contents
 - [Overview](#overview)
@@ -11,9 +11,9 @@
 
 ## Overview
 
-EurekaPrompt is an advanced medical prompting framework designed to enhance the accuracy and reasoning of LLMs in medical tasks. Building upon the MedPrompt framework, EurekaPrompt uses an LLM Judge to provide better selection of the strongest chain of thought reasoning, ultimately leading to a 93.3% performance score on the USMLE.
+EurekaMD is an advanced medical prompting framework designed to enhance the accuracy and reasoning of LLMs in medical tasks. Building upon the MedPrompt framework, EurekaMD uses an LLM Judge to provide better selection of the strongest chain of thought reasoning, ultimately leading to a 93.3% performance score on the USMLE.
 
-This repository provides the scripts and workflows to replicate EurekaPrompt's training and evaluation process.
+This repository provides the scripts and workflows to replicate EurekaMD's training and evaluation process.
 
 ## Installation
 
@@ -77,7 +77,7 @@ python src/select-best-reasoning-paths.py
 
 ### Calculate USMLE Accuracy
 
-The final script evaluates the accuracy of EurekaPrompt on the USMLE test set, using the reasoning paths selected by the previous script as the paths to use for the few-shot learning. The questions evaluated are those in the [MedQA 4-options dataset](https://huggingface.co/datasets/GBaker/MedQA-USMLE-4-options).
+The final script evaluates the accuracy of EurekaMD on the USMLE test set, using the reasoning paths selected by the previous script as the paths to use for the few-shot learning. The questions evaluated are those in the [MedQA 4-options dataset](https://huggingface.co/datasets/GBaker/MedQA-USMLE-4-options).
 
 #### To Run
 
