@@ -70,6 +70,8 @@ def llm_as_a_judge(client, question, choices, answer, explanation, model_id='gpt
         print(user_prompt)
         print('=' * 100)
         print(response.choices[0])
+
+    res = res.strip()
     res = res.replace('{\n', '{').replace('\n}', '}').replace('\n"score"', ' "score"').replace('\n', '\\n')
     return json.loads(res)
 
@@ -176,6 +178,7 @@ Here are examples that demonstrate how to reason about the question:
         max_tokens=8192
     ).choices[0].message.content
 
+    res = res.strip()
     res = res.replace('{\n', '{').replace('\n}', '}').replace('\x08', '').replace('\n"answer"', ' "answer"').replace('\n, "answer"', ', "answer"')
     res = re.sub(r'(?<!\\)\n', r'\\n', res)
     try:

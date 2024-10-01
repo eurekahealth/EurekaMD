@@ -1,11 +1,9 @@
 import argparse
-import json
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from fireworks.client import Fireworks
 from openai import OpenAI
-from openai import AzureOpenAI
 import pandas as pd
 from tqdm import tqdm
 
@@ -63,7 +61,7 @@ if __name__ == '__main__':
         return prompt, votes_by_answer_idx, row['answer_idx']
 
 
-    max_workers = 6
+    max_workers = 8
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
         future_to_row = {executor.submit(process_row, row): i for i, row in df.iterrows() if i not in index_values}
 
@@ -71,6 +69,10 @@ if __name__ == '__main__':
             row_index = future_to_row[future]
             try:
                 prompt, votes, answer = future.result()
+                if len(votes) == 0:
+                    print(f'No result for row {row_index}')
+                    continue
+
                 index_values.append(row_index)
                 prompts.append(prompt)
                 predicted_answers.append(max(votes, key=votes.get))
