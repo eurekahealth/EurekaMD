@@ -20,6 +20,8 @@ if __name__ == '__main__':
     parser.add_argument("--model-id", type=str, choices=["gpt-4o-2024-08-06", "accounts/fireworks/models/llama-v3p1-405b-instruct"], help="The id of the model to use.")
     parser.add_argument("--client", type=str, choices=["openai", "fireworks"], help="The llm provider to use.")
     parser.add_argument("--use-cot", type=bool, default=False, help="Whether to use cot in the response.")
+    parser.add_argument("--num-examples", type=int, default=5, help="The number of examples to inject for in-context learning.")
+    parser.add_argument("--num-shuffles", type=int, default=5, help="The number of shuffles to perform as part of choice shuffling.")
 
     args, _ = parser.parse_known_args()
 
@@ -45,7 +47,7 @@ if __name__ == '__main__':
         similar_train_rows = similar_training_questions[similar_training_questions['test_idx'] == row.name]
         similar_train_rows = similar_train_rows['train_idx'].tolist()
 
-        examples = create_examples(similar_train_rows, train_df, gpt_cot_df, llama_cot_df)
+        examples = create_examples(similar_train_rows, train_df, gpt_cot_df, llama_cot_df, max_examples=args.num_examples)
         votes_by_answer_idx = answer_via_ensemble(
             client,
             args.model_id,
@@ -54,7 +56,7 @@ if __name__ == '__main__':
             examples,
             temp,
             cot=args.use_cot,
-            num_models=5
+            num_models=args.num_shuffles
         )
 
         prompt = get_prompt_for_not_diamond(row['question'], row['options'], examples)
