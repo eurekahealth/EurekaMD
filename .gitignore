@@ -1,2 +1,6 @@
 .idea
 .python-version
+src/__pycache__/
+
+nohup.out
+.DS_Store
